@@ -1,13 +1,43 @@
 #include <iostream>
 #include <string>
+#include <algorithm>
+#include <cmath>
 
 using namespace std;
 
+class TestCase {
+public:
+	TestCase();
+private:
+	void input();
+	void output();
+	void calc();
+private:
+};
 
-int main (void) {
-	string input;
-	while (getline(cin,input)) {
-		
+int main(int argc, char* argv[])
+{
+	int T;
+	cin>>T;
+	for (int i=0;i<T;i++) {
+		TestCase();
 	}
 	return 0;
+}
+
+TestCase::TestCase() {
+	input();
+	calc();
+	output();
+}
+
+void TestCase::input() {
+
+}
+
+void TestCase::output() {
+}
+
+void TestCase::calc() {
+	
 }
