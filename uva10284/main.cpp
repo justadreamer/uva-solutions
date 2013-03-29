@@ -10,6 +10,9 @@ const int SIZE  = 8;
 const int FREE  = 0;
 const int ATTACKED = 1;
 
+class TestCase;
+typedef void (TestCase::*func)(int,int,char);
+
 class TestCase {
 public:
 	TestCase(const string& s);
@@ -20,11 +23,13 @@ private:
 	void output_board();
 	void calc();
 	void calc_attack(int row, int col, char c);
+	void calc_sum(int row, int col, char c);
 	bool mark_attack(int row, int col);
 	void cross_attack(int row, int col);
 	void line_attack(int row, int col, int row_inc, int col_inc);
 	void diag_cross_attack(int row, int col);
 	bool is_within(int row, int col);
+	void loop_thru(func f);
 private:
 	int** board;
 	int result;
@@ -101,26 +106,29 @@ void TestCase::output() {
 	cout<<result<<endl;
 }
 
-void TestCase::calc() {
+void TestCase::loop_thru(func f) {
 	for (int i=SIZE-1;i>=0;i--) {
 		for (int j=0;j<SIZE;j++) {
-			int c = board[i][j];
-			if (isalpha(c)) {
-				calc_attack(i,j,(char)c);
-			}
-		}
-	}
-	result = 0;
-	for (int i=SIZE-1;i>=0;i--) {
-		for (int j=0;j<SIZE;j++) {
-			if (board[i][j]==FREE) {
-				result++;
-			}
+			(this->*f)(i,j,board[i][j]);
 		}
 	}
 }
 
+void TestCase::calc_sum(int row, int col, char c) {
+	if (c==FREE)
+		result++;
+}
+
+void TestCase::calc() {
+	loop_thru(&TestCase::calc_attack);
+	result = 0;
+	loop_thru(&TestCase::calc_sum);
+}
+
 void TestCase::calc_attack(int row, int col, char c) {
+	if (!isalpha(c))
+		return;
+
 	if (c=='p') {
 		mark_attack(row-1,col-1);
 		mark_attack(row-1,col+1);
