@@ -9,6 +9,7 @@ class TestCase {
 public:
 	bool is_terminal();
 	TestCase(int _k);
+	~TestCase();
 	void doWork();
 private:
 	void input();
@@ -36,10 +37,18 @@ int main(int argc, char* argv[])
 	return 0;
 }
 
-TestCase::TestCase(int _k):k(_k) {
+TestCase::TestCase(int _k):k(_k),field(NULL) {
 	input();
 }
 
+TestCase::~TestCase() {
+	if (field) {
+		for (int i=0;i<n;i++) {
+			delete [] field [i];
+		}
+		delete [] field;
+	}
+}
 void TestCase::doWork() {
 	if (!is_terminal()) {
 		calc();
