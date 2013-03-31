@@ -1,0 +1,3 @@
+Position of player 1 is 20.
+Position of player 2 is 5.
+Position of player 3 is 6.
