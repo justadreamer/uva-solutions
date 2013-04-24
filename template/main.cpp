@@ -5,6 +5,7 @@
 #include <vector>
 #include <map>
 #include <sstream>
+#include <cstdio>
 
 using namespace std;
 
