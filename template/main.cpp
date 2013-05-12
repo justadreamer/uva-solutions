@@ -7,6 +7,8 @@
 #include <sstream>
 #include <cstdio>
 #include <set>
+#include <iomanip>
+#include <list>
 
 using namespace std;
 
