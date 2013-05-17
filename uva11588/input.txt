@@ -1,0 +1,13 @@
+3
+5 4 2 1
+ABCD
+ABCA
+EFAC
+BCAG
+AZIP
+2 2 2 1
+AB
+AB
+2 2 2 1
+AA
+AB
