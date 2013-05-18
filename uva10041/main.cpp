@@ -50,7 +50,7 @@ void TestCase::input() {
 		streets[i]=s;
 	}
 	sort(streets.begin(),streets.end());
-	size_t med = r / 2;
+	size_t med = (r-1) / 2;
 	int mindist = INT_MAX;
 	int dist = 0;
 	int base = streets[med];
