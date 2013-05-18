@@ -51,16 +51,14 @@ void TestCase::input() {
 	}
 	sort(streets.begin(),streets.end());
 	size_t med = r / 2;
-	int mindist = r > 0 ? INT_MAX : 0;
-	for (size_t k=med;k<=med+1 && k<streets.size();++k) {
-		int dist = 0;
-		int base = streets[k];
-		for (int i=0;i<r;++i) {
-			dist+=abs(base-streets[i]);
-		}
-		if (dist<mindist)
-			mindist = dist;
+	int mindist = INT_MAX;
+	int dist = 0;
+	int base = streets[med];
+	for (int i=0;i<r;++i) {
+		dist+=abs(base-streets[i]);
 	}
+	if (dist<mindist)
+		mindist = dist;
 	cout<<mindist<<endl;
 }
 
