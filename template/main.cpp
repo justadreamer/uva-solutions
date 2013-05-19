@@ -9,6 +9,7 @@
 #include <set>
 #include <iomanip>
 #include <list>
+#include <climits>
 
 using namespace std;
 
@@ -39,12 +40,10 @@ TestCase::TestCase() {
 }
 
 void TestCase::input() {
-
-}
-
-void TestCase::output() {
 }
 
 void TestCase::calc() {
-	
+}
+
+void TestCase::output() {
 }
