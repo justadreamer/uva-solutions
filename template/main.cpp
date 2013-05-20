@@ -10,6 +10,7 @@
 #include <iomanip>
 #include <list>
 #include <climits>
+#include <stack>
 
 using namespace std;
 
