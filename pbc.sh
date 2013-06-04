@@ -1,2 +1,3 @@
 #!/bin/sh
-cat uva$1/main.cpp | pbcopy
+dir=uva$1
+cat $dir/$dir.cpp | pbcopy

@@ -1,7 +1,7 @@
 #!/bin/bash
 dir=uva$1
 cd $dir
-g++ -lm -O2 -pipe main.cpp -o main || exit 1 
+g++ -lm -O2 -pipe $dir.cpp -o main || exit 1 
 ./main < input.txt > test_output.txt
 cat test_output.txt
 echo "------DIFF-WITH-TEST-DATA------"
