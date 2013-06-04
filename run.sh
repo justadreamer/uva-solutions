@@ -1,12 +1,12 @@
 #!/bin/bash
 dir=uva$1
 cd $dir
-g++ -lm -O2 -pipe $dir.cpp -o main || exit 1 
-./main < input.txt > test_output.txt
+g++ -lm -O2 -pipe $dir.cpp -o $dir || exit 1 
+./$dir < input.txt > test_output.txt
 cat test_output.txt
 echo "------DIFF-WITH-TEST-DATA------"
 diff output.txt test_output.txt
 #cleanup
-rm main
+rm $dir
 rm test_output.txt
 cd -
