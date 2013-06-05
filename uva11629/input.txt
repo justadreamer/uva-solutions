@@ -1,0 +1,12 @@
+6 5
+CDU 30.7
+SPD 20.8
+Gruene 12.1
+FDP 11.0
+DIELINKE 7.5
+csu0 7.2
+FDP > 11
+CDU + SPD < 50
+SPD + csu0 >= 28
+FDP + SPD + CDU <= 42
+CDU + FDP + SPD + DIELINKE = 70
