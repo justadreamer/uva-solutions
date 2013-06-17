@@ -17,6 +17,8 @@
 
 using namespace std;
 
+typedef vector<int> vi;
+
 class TestCase {
 public:
 	TestCase();
