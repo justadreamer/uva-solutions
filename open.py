@@ -23,8 +23,6 @@ def open_problem(problem_id):
 	print url
 	os.system('open '+'"'+url[0]+'"')
 
-open_problem('00159')
-
 if len(sys.argv)<2:
 	print "usage: open.py {5_digit_uva_problem_number}"
 else:
