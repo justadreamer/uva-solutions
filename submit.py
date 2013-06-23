@@ -6,13 +6,18 @@ import urllib2
 import sys
 import os
 import string
-from cookielib import CookieJar
+from cookielib import LWPCookieJar
 
 kUsername = 'username'
 kPasswd = 'passwd'
 base_url = 'http://uva.onlinejudge.org/'
+cookiesfile = os.path.expanduser("~/.cookiejar")
 
-opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(CookieJar()))
+cookiejar = LWPCookieJar(cookiesfile)
+if os.access(cookiesfile,os.F_OK):
+	cookiejar.load()
+
+opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookiejar))
 
 def filter_form_by_action(forms,action_part):
 	l = filter(lambda f: f['action'].find(action_part)>-1,forms)
@@ -60,6 +65,7 @@ def login(html):
 	params_dict[kPasswd]=credentials[kPasswd]
 	params_string = urllib.urlencode(params_dict)
 	resp = opener.open(loginform['action'],params_string)
+	print "attempted to log in"
 	return resp.read()
 
 
@@ -78,9 +84,10 @@ def try_submit(html,task):
 	forms = soup("form")
 	codeform = get_codeform(forms)
 	if not codeform:
+		print "seems we are not logged in"
 		return False
 	submit_code(codeform,task)
-
+	print "submitted code for problem id",task
 	return True
 
 def main():
@@ -93,6 +100,8 @@ def main():
 	html = get_submit_page()
 	if not try_submit(html,task):
 		try_submit(login(html),task)
+
+	cookiejar.save()
 
 if __name__ == "__main__":
     main()
