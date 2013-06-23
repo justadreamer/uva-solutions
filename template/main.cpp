@@ -22,13 +22,26 @@ typedef vector<int> vi;
 
 class TestCase {
 public:
-	TestCase();
+	TestCase() {
+		input();
+		calc();
+		output();
+	}
 private:
-	void input();
-	void output();
-	void calc();
+	void input() {
+
+	}
+
+	void output() {
+
+	}
+
+	void calc() {
+
+	}
 private:
 };
+
 
 int main(int argc, char* argv[])
 {
@@ -38,19 +51,4 @@ int main(int argc, char* argv[])
 		TestCase();
 	}
 	return 0;
-}
-
-TestCase::TestCase() {
-	input();
-	calc();
-	output();
-}
-
-void TestCase::input() {
-}
-
-void TestCase::calc() {
-}
-
-void TestCase::output() {
 }
