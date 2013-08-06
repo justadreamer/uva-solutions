@@ -32,13 +32,14 @@ private:
 
 	}
 
+	void calc() {
+
+	}
+
 	void output() {
 
 	}
 
-	void calc() {
-
-	}
 private:
 };
 
