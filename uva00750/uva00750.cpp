@@ -24,9 +24,11 @@ const int SIZE = 8;
 
 int fixed_row,fixed_col;//fixed queen position
 int n;
+int cols[SIZE+1];
+
 void check_and_output(int cols[],int col);
 
-void output(int cols[]) {
+void output() {
 	cout<<setw(2)<<++n<<"      ";
 	for (int i=1;i<=SIZE;++i) {
 		if (i>1) cout<<" ";
@@ -35,53 +37,49 @@ void output(int cols[]) {
 	cout<<endl;
 }
 
-void place_queen(int cols[], int col) {
-	if (col==fixed_col) {
-		cols[col]=fixed_row;
-		check_and_output(cols,col);
-	} else {
-		for (int row=1;row<=SIZE;++row) {
-			cols[col]=row;
-			check_and_output(cols,col);
-		}
-	}
-}
-
-bool has_conflicts(int cols[],int col) {
+bool has_conflicts(int row,int col) {
 	//check row and diag:
 	for (int i=1;i<col;++i) {
-		if (cols[i]==cols[col] || abs(cols[i]-cols[col])==abs(col-i)) {
+		if (cols[i]==row || abs(cols[i]-row)==abs(col-i)) {
 			return true;
 		}
 	}
 	return false;
 }
 
-void check_and_output(int cols[], int col) {
-	if (!has_conflicts(cols,col)) {
-		if (col==SIZE) {
-			output(cols);
-		} else {
-			place_queen(cols,++col);
+
+void backtrack(int col) {
+	if (col>SIZE) {
+		output();
+		return;
+	}
+	if (col==fixed_col) {
+		if (!has_conflicts(fixed_row,fixed_col)) {
+			cols[fixed_col]=fixed_row;
+			backtrack(++col);	
+		}
+	} else {
+		for (int row=1;row<=SIZE;++row) {
+			if (!has_conflicts(row,col)) {
+				cols[col] = row;
+				backtrack(++col);	
+			}
 		}
 	}
 }
-
 
 int main(int argc, char* argv[])
 {
 	int T;
 	cin>>T;
-	for (int i=0;i<T;++i) {
-		if (i>0) cout<<endl;
+	while (T--) {
 		cout<<"SOLN       COLUMN"<<endl;
  		cout<<" #      1 2 3 4 5 6 7 8"<<endl<<endl;
-
 		cin>>fixed_row>>fixed_col;
 		n = 0;
-		int cols[SIZE+1];
 		fill_n(cols,0,SIZE+1);
-		place_queen(cols,1);
+		backtrack(1);
+		if (T) cout<<endl;
 	}
 	return 0;
 }
