@@ -39,20 +39,10 @@ private:
 	}
 
 	void calc() {
-		bitset<20> bits;
-		do {
-			for (int i=0;i<p;++i) {
-				if (!bits.test(i)) {
-					bits.set(i);
-					break;
-				} else {
-					bits.reset(i);
-				}
-			}
-
+		for (int N=0;N<(1<<p);++N) {
 			int sum=0;
 			for (int i=0;i<p;++i) {
-				if (bits.test(i)) {
+				if (N & (1<<i)) {
 					sum+=bars[i];
 				}
 			}
@@ -60,7 +50,7 @@ private:
 				cout<<"YES"<<endl;
 				return;
 			}
-		} while (!bits.none());
+		}
 		cout<<"NO"<<endl;
 	}
 

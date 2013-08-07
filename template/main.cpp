@@ -9,6 +9,7 @@
 #include <list>
 #include <stack>
 #include <queue>
+#include <bitset>
 
 #include <cstdio>
 #include <cmath>
