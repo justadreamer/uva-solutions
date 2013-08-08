@@ -56,13 +56,13 @@ void backtrack(int col) {
 	if (col==fixed_col) {
 		if (!has_conflicts(fixed_row,fixed_col)) {
 			cols[fixed_col]=fixed_row;
-			backtrack(++col);	
+			backtrack(col+1);	
 		}
 	} else {
 		for (int row=1;row<=SIZE;++row) {
 			if (!has_conflicts(row,col)) {
 				cols[col] = row;
-				backtrack(++col);	
+				backtrack(col+1);	
 			}
 		}
 	}
