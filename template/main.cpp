@@ -21,36 +21,12 @@ using namespace std;
 
 typedef vector<int> vi;
 
-class TestCase {
-public:
-	TestCase() {
-		input();
-		calc();
-		output();
-	}
-private:
-	void input() {
-
-	}
-
-	void calc() {
-
-	}
-
-	void output() {
-
-	}
-
-private:
-};
-
-
 int main(int argc, char* argv[])
 {
 	int T;
 	cin>>T;
-	for (int i=0;i<T;i++) {
-		TestCase();
+	while (T--) {
+		
 	}
 	return 0;
 }
