@@ -16,6 +16,7 @@
 #include <climits>
 #include <cstring>
 #include <cctype>
+#include <cstdlib>
 
 using namespace std;
 
