@@ -9,69 +9,48 @@
 #include <list>
 #include <stack>
 #include <queue>
+#include <bitset>
 
 #include <cstdio>
 #include <cmath>
 #include <climits>
 #include <cstring>
 #include <cctype>
+#include <cstdlib>
 
 using namespace std;
 
 typedef vector<int> vi;
-typedef set<int> si;
-
-class TestCase {
-public:
-	TestCase(int k) {
-		process(k);
-	}
-private:
-	void process(int k) {
-		vi numbers(k,0);
-		for (int i=0;i<k;++i) {
-			cin>>numbers[i];
-		}
-
-		si choose;
-		choose_next(choose,numbers);
-	}
-
-	void choose_next(si& choose, const vi& numbers) {
-		const int max = 6;
-		if (choose.size()==max) {
-			for (si::iterator i = choose.begin();i!=choose.end();++i) {
-				if (i!=choose.begin())
-					cout<<" ";
-				cout<<numbers[*i];
-			}
-			cout<<endl;
-			return;
-		}
-		for (int i=choose.size() ? *(choose.rbegin()) : 0; i<numbers.size(); ++i) {
-			pair<si::iterator,bool> p = choose.insert(i);
-			if (p.second) {
-				choose_next(choose,numbers);
-			} else {
-				continue;
-			}
-			choose.erase(p.first);
-		}
-	}
-};
-
 
 int main(int argc, char* argv[])
 {
 	int k;
-	bool is_first = true;
+  bool is_first=true;
 	while (cin>>k && k) {
-		if (is_first) {
-			is_first = false;
-		} else {
-			cout<<endl;
-		}
-		TestCase t(k);
+    if (!is_first) 
+      printf("\n");
+    else 
+      is_first = false;
+		vi S;
+    while (k--) {
+      int n; cin>>n; S.push_back(n);
+    }
+
+    k = S.size();
+
+    for (int a=0;a<=k-6;++a) {
+      for (int b=a+1;b<=1+k-6;++b) {
+        for (int c=b+1;c<=2+k-6;++c) {
+          for (int d=c+1;d<=3+k-6;++d) {
+            for (int e=d+1;e<=4+k-6;++e) {
+              for (int f=e+1;f<=5+k-6;++f) {
+                printf("%d %d %d %d %d %d\n",S[a],S[b],S[c],S[d],S[e],S[f]);
+              }
+            }
+          }
+        }
+      }
+    }
 	}
 	return 0;
 }
