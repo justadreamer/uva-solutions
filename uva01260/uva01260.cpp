@@ -36,8 +36,9 @@ int main(int argc, char* argv[])
     int s = 0;
     for (int i=1; i<a.size(); ++i) {
       for (int j=0; j<i; ++j) {
-        if (a[j]<=a[i])
+        if (a[j]<=a[i]) {
           ++s;
+        }
       }
     }
     cout<<s<<endl;
