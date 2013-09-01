@@ -10,6 +10,7 @@
 #include <stack>
 #include <queue>
 #include <bitset>
+#include <numeric>
 
 #include <cstdio>
 #include <cmath>
