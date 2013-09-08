@@ -55,26 +55,6 @@ void add(int num[], int n, int used) {
   sols.insert(sol);
 }
 
-void backtrack(int num[], int n, int t, int l, int used) {
-  int s = sum(num,n,used);
-
-  if (s==t) {
-    add(num,n,used);
-    return;
-  } else if (s<t) {
-    for (int i=l;i<n;++i) {
-      int mask = 1<<i;
-      if (0 == (used & mask)) {
-        used |= mask;
-        backtrack(num,n,t,l+1,used);
-        used ^= mask;
-      }
-    }
-  }
-}
-
-
-
 int main(int argc, char* argv[])
 {
 	int t,n;
@@ -84,7 +64,11 @@ int main(int argc, char* argv[])
     //input
     for (int i=0;i<n;++i) cin>>num[i];
     //building solutions
-    backtrack(num,n,t,0,0);
+    for (int used=0;used<1<<n;++used) {
+      int s = sum(num,n,used);
+      if (s==t)
+        add(num,n,used);
+    }
     //output
     cout<<"Sums of "<<t<<":"<<endl;
     if (sols.size()==0) {
