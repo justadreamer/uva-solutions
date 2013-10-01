@@ -22,6 +22,7 @@
 using namespace std;
 
 typedef vector<int> vi;
+typedef set<int> si;
 
 int main(int argc, char* argv[])
 {
