@@ -27,25 +27,25 @@ int main(int argc, char* argv[])
 {
   int N;
 	while (cin>>N) {
-		vi prices;
+		set<int> prices;
     while (N--) {
       int price; cin>>price;
-      prices.push_back(price);
+      prices.insert(price);
     }
 
-    sort(prices.begin(),prices.end());
     int M; cin>>M;
 
-    int ii,jj;
-    for (int i=0;i<prices.size() && prices[i]<=M/2;++i) {
-      for (int j=i+1;j<prices.size();++j) {
-        if (prices[i]+prices[j]==M) {
-          ii=i;jj=j;
-        }
+    int pi,pj;
+    for (set<int>::iterator i=prices.begin();i!=prices.end() && *i<=M/2;++i) {
+      int p = M-*i;
+      set<int>::iterator j = prices.find(p);
+      if (j!=prices.end()) {
+        pi = *i;
+        pj = *j;
       }
     }
 
-    cout<<"Peter should buy books whose prices are "<<prices[ii]<<" and "<<prices[jj]<<"."<<endl<<endl;
+    cout<<"Peter should buy books whose prices are "<<pi<<" and "<<pj<<"."<<endl<<endl;
 	}
 	return 0;
 }
