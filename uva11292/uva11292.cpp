@@ -48,14 +48,14 @@ int main(int argc, char* argv[])
     } else {
       int j = 0;
       for (int i=0;i<n;++i) {
-        while (j<m && knights[j]<heads[i]) {
+        while (knights[j]<heads[i] && j<m) {
           ++j;
         }
-        if (j<m && knights[j]>=heads[i]) {
-          money+=knights[j];
-        } else {
+        if (j==m) {
           is_doomed = true;
           break;
+        } else {
+          money+=knights[j];
         }
         ++j;
       }
