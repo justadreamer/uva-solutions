@@ -19,13 +19,18 @@
 #include <cctype>
 #include <cstdlib>
 
+#include <stdio.h>
+
 using namespace std;
 
 typedef vector<int> vi;
 typedef set<int> si;
 
-int main(int argc, char* argv[])
-{
+int main(int argc, char* argv[]) {
+#ifndef ONLINE_JUDGE
+  freopen("input.txt","r",stdin);
+#endif
+
 	int T;
 	cin>>T;
 	while (T--) {
