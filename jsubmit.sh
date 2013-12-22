@@ -1,0 +1,1 @@
+./submit.py $1 java
