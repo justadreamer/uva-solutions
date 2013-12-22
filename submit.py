@@ -12,6 +12,7 @@ kUsername = 'username'
 kPasswd = 'passwd'
 base_url = 'http://uva.onlinejudge.org/'
 cookiesfile = os.path.expanduser("~/.cookiejar")
+is_java = False #we assume C++ by default
 
 cookiejar = LWPCookieJar(cookiesfile)
 if os.access(cookiesfile,os.F_OK):
@@ -40,14 +41,17 @@ def params_dict_from_inputs(inputs):
 
 def get_code(task):
 	uvatask = 'uva'+task
-	abspath = os.path.abspath(uvatask+'/'+uvatask+'.cpp')
+	filename = uvatask+'.cpp'
+	if is_java:
+		filename = 'Main.java'
+	abspath = os.path.abspath(uvatask+'/'+filename)
 	f = open(abspath)
 	return f.read()
 
-def submit_code(codeform,task):
+def submit_code(codeform,task,language):
 	inputs = codeform("input")
 	params_dict = params_dict_from_inputs(inputs)
-	params_dict['language']=3
+	params_dict['language']=language
 	params_dict['localid']=task
 	params_dict['code']=get_code(task)
 	params_string = urllib.urlencode(params_dict)
@@ -86,7 +90,10 @@ def try_submit(html,task):
 	if not codeform:
 		print "seems we are not logged in"
 		return False
-	submit_code(codeform,task)
+	language = 3 #assume C++
+	if is_java:
+		language = 2
+	submit_code(codeform,task,language)
 	print "submitted code for problem id",task
 	return True
 
@@ -96,6 +103,9 @@ def main():
 		sys.exit()
 
 	task = sys.argv[1]
+
+	global is_java
+	is_java = len(sys.argv)>2 and sys.argv[2]=='java'
 
 	html = get_submit_page()
 	if not try_submit(html,task):
