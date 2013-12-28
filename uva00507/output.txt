@@ -1,0 +1,30 @@
+The nicest part of route 1 is between stops 1 and 6
+The nicest part of route 2 is between stops 1 and 5
+Route 3 has no nice parts
+The nicest part of route 4 is between stops 3 and 9
+The nicest part of route 5 is between stops 3 and 10
+The nicest part of route 6 is between stops 2 and 5
+The nicest part of route 7 is between stops 1 and 6
+The nicest part of route 8 is between stops 1 and 10
+The nicest part of route 9 is between stops 1 and 12
+The nicest part of route 10 is between stops 1 and 4
+The nicest part of route 11 is between stops 1 and 4
+The nicest part of route 12 is between stops 4 and 7
+The nicest part of route 13 is between stops 1 and 2
+The nicest part of route 14 is between stops 1 and 5
+The nicest part of route 15 is between stops 2 and 3
+The nicest part of route 16 is between stops 3 and 9
+Route 17 has no nice parts
+The nicest part of route 18 is between stops 1 and 6
+The nicest part of route 19 is between stops 1 and 5
+Route 20 has no nice parts
+The nicest part of route 21 is between stops 3 and 9
+The nicest part of route 22 is between stops 3 and 10
+The nicest part of route 23 is between stops 2 and 5
+The nicest part of route 24 is between stops 1 and 6
+The nicest part of route 25 is between stops 1 and 10
+The nicest part of route 26 is between stops 1 and 12
+The nicest part of route 27 is between stops 3 and 12
+The nicest part of route 28 is between stops 5 and 7
+The nicest part of route 29 is between stops 1 and 4
+The nicest part of route 30 is between stops 1 and 4
