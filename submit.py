@@ -13,6 +13,7 @@ kPasswd = 'passwd'
 base_url = 'http://uva.onlinejudge.org/'
 cookiesfile = os.path.expanduser("~/.cookiejar")
 is_java = False #we assume C++ by default
+is_cpp11 = False 
 
 cookiejar = LWPCookieJar(cookiesfile)
 if os.access(cookiesfile,os.F_OK):
@@ -40,6 +41,7 @@ def params_dict_from_inputs(inputs):
 	return params_dict
 
 def get_code(task):
+	global is_java
 	uvatask = 'uva'+task
 	filename = uvatask+'.cpp'
 	if is_java:
@@ -84,6 +86,8 @@ def get_submit_page():
 	return resp.read()
 
 def try_submit(html,task):
+	global is_java
+	global is_cpp11
 	soup = BeautifulSoup(html)
 	forms = soup("form")
 	codeform = get_codeform(forms)
@@ -93,20 +97,23 @@ def try_submit(html,task):
 	language = 3 #assume C++
 	if is_java:
 		language = 2
+	elif is_cpp11:
+		language = 5
 	submit_code(codeform,task,language)
 	print "submitted code for problem id",task
 	return True
 
 def main():
 	if len(sys.argv)<2:
-		print "Please specify a 5-digit task number"
+		print "./submit.py <5-digit task number> [java|cpp11]"
 		sys.exit()
 
 	task = sys.argv[1]
 
 	global is_java
+	global is_cpp11
 	is_java = len(sys.argv)>2 and sys.argv[2]=='java'
-
+	is_cpp11 = len(sys.argv)>2 and sys.argv[2]=='cpp11'
 	html = get_submit_page()
 	if not try_submit(html,task):
 		try_submit(login(html),task)
