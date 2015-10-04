@@ -51,14 +51,17 @@ def parse_problems(url):
     query_insert = ("INSERT IGNORE INTO problems "
               "(problem_id, problem_title, problem_url) "
               "VALUES (%s, %s, %s) ")
+
     for link in links:
-        problem_title = link.string.encode('ascii','ignore')
-        problem_url = base_url+link['href'].encode('ascii','ignore')
-        problem_id = string.split(problem_title,'-')[0]
-        problem_id = '{0:05d}'.format(int(problem_id)).encode('ascii','ignore')
-        print problem_id,problem_title,problem_url
-        cur.execute(query_insert,(problem_id,problem_title,problem_url))
-        con.commit()
+        text = link.string 
+        if text:
+            problem_url = base_url+link['href'].encode('ascii','ignore')
+            problem_title = text.encode('ascii','ignore')
+            print problem_title
+            problem_id = string.split(problem_title,'-')[0]
+            problem_id = '{0:05d}'.format(int(problem_id)).encode('ascii','ignore')
+            cur.execute(query_insert,(problem_id,problem_title,problem_url))
+            con.commit()
     cur.close()
     con.close()
 
